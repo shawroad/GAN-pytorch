@@ -18,7 +18,18 @@ Implementation of GAN
      3.符合正太分布(np.random.normal)+判别器D
        就是让编码器的编码规律符合正太分布
 ### 2-ACGAN
-     具体的思路:
+     **具体的思路**
+     生成模型: 输入噪声和标签数据 用一系列卷积得到我们需要的图片大小
+     判别模型: 预测当前图片的标签以及真假
+     adversarial_loss() 判别真假损失(二分类)， auxiliary_loss()预测标签的损失(多分类) 
+     **生成模型的损失函数**
+     通过随机标签和随机噪声 生成一张图片 放入判别模型中判别得到生成模型的损失
+     g_loss = 0.5 * (adversarial_loss(validity, valid) + auxiliary_loss(pred_label, gen_labels))
+     **判别模型的损失函数**  
+     将真实图片和生成的假图片同时送入判别模型 训练判别模型
+     d_real_loss = (adversarial_loss(real_pred, valid) + auxiliary_loss(real_aux, labels)) / 2
+     d_fake_loss = (adversarial_loss(fake_pred, fake) + auxiliary_loss(fake_aux, gen_labels)) / 2
+     d_loss = (d_real_loss + d_fake_loss) / 2
 ### 3-BEGAN
      具体的思路:
 ### 4-BGAN
