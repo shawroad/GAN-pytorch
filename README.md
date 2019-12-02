@@ -11,3 +11,10 @@ Implementation of GAN
      d_loss = 0.5 * (real_loss + fake_loss)
 ### 2-ACGAN
      具体的思路:
+### 3-BEGAN
+     具体的思路:
+### 4-BGAN
+     具体的思路:
+### 5-BycicleGAN
+     具体的思路:
+     
