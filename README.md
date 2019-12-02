@@ -9,6 +9,13 @@ Implementation of GAN
      real_loss = adversarial_loss(discriminator(z), valid)
      fake_loss = adversarial_loss(discriminator(encoded_imgs.detach()), fake)
      d_loss = 0.5 * (real_loss + fake_loss)
+     组成部分:
+     1.编码器
+       所谓编码器其实就是几层神经网络叠在一起，将一张(batch_size,28,28)图片变成(batch_size,10)向量
+     2.解码器
+       解码器就是将原来编码生成的(batch_size,10)向量，解码还原成(batch_size,28,28)图片
+     3.符合正太分布(np.random.normal)+判别器D
+       就是让编码器的编码规律符合正太分布
 ### 2-ACGAN
      具体的思路:
 ### 3-BEGAN
