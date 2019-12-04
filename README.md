@@ -35,7 +35,7 @@ Implementation of GAN
      d_fake_loss = (adversarial_loss(fake_pred, fake) + auxiliary_loss(fake_aux, gen_labels)) / 2
      d_loss = (d_real_loss + d_fake_loss) / 2
 ### 3-BEGAN
-     具体的思路
+   [原理讲解部分](https://blog.csdn.net/linmingan/article/details/79912988)
    ![BEGANLoss](https://github.com/shawroad/GAN-pytorch/blob/master/assert/BEGAN_Loss.png)
   
 ### 4-BGAN
