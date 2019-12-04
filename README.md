@@ -36,6 +36,8 @@ Implementation of GAN
      d_loss = (d_real_loss + d_fake_loss) / 2
 ### 3-BEGAN
      具体的思路
+   ![BEGANLoss](https://github.com/shawroad/GAN-pytorch/blob/master/assert/BEGAN_Loss.png)
+  
 ### 4-BGAN
      具体的思路
 ### 5-BycicleGAN
