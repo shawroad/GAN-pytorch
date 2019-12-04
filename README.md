@@ -40,6 +40,7 @@ Implementation of GAN
   
 ### 4-BGAN
      具体的思路
+     BGAN的全称是Boundary Seeking GAN，它的中文翻译是：基于边界寻找的gan，那么这个边界指的是谁呢？一般而言，判别器的loss稳定在0.5的时候，生成图片的效果是最好的，而这个边界指代的就是0.5。　
 ### 5-BycicleGAN
      具体的思路
      模型结构图
