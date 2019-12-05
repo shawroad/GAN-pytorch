@@ -43,6 +43,10 @@ Implementation of GAN
      BGAN的全称是Boundary Seeking GAN，它的中文翻译是：基于边界寻找的gan，那么这个边界指的是谁呢？一般而言，判别器的loss稳定在0.5的时候，生成图片的效果是最好的，而这个边界指代的就是0.5。　
 ### 5-BycicleGAN
      具体的思路
+     有两组图片，记做realA和realB, 首先，我们将realB送入encoder中,得到方差的对数和均值, 然后通过重参数的技巧得到一个向量，将这个向量和图片realA合并，送入生成模型(U-net)中生成图片，　接着将生成图片送入判别模型中。　另外，还自动生成一个隐藏向量，然后和realA组合送入生成模型，然后将生成的图片送入到判别模型中。　encoder模型的损失包括: realB和fakeB的损失， KL损失，　判别模型将fakeB判别为真的损失，　判别模型将随机向量生成的图片判别为真的损。　generation模型的损失包括: 随机向量送入encoder中得到的均值向量和随机向量的mae_loss。　decision模型的损失包括: 将realB判别为真的损失, 将fakeB判别为假的损失，
      模型结构图
    ![BycicleGAN模型](https://github.com/shawroad/GAN-pytorch/blob/master/assert/bicyclegan_architecture.jpg)
+### 6-CCGAN
+  　　具体思路
+     
      
