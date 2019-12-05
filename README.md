@@ -3,7 +3,8 @@ Implementation of GAN
 
 ### 1-AAE
      具体的思路
-     采用的类似变分自编码器的思想，训练生成模型的损失分为为两部分: 原始变分自编码器的重构损失和隐层输出经过判别模型的输出(真假)损失. 训练判别模型的损失也分为两部分: 生成随机噪声(大小是变分自编码器的中间层大小)判断为真的损失和 真实图片经过自编码器得到隐层判断为假的损失。
+       采用的类似变分自编码器的思想，训练生成模型的损失分为为两部分: 原始变分自编码器的重构损失和隐层输出经过判别模型的输出(真假)损失. 训练判别模型
+     的损失也分为两部分: 生成随机噪声(大小是变分自编码器的中间层大小)判断为真的损失和 真实图片经过自编码器得到隐层判断为假的损失。
      
      生成模型的损失函数: 
      g_loss = 0.001 * adversarial_loss(discriminator(encoded_imgs), valid) + 0.999 * pixelwise_loss(decoded_imgs, real_imgs)
@@ -40,10 +41,15 @@ Implementation of GAN
   
 ### 4-BGAN
      具体的思路
-     BGAN的全称是Boundary Seeking GAN，它的中文翻译是：基于边界寻找的gan，那么这个边界指的是谁呢？一般而言，判别器的loss稳定在0.5的时候，生成图片的效果是最好的，而这个边界指代的就是0.5。　
+        BGAN的全称是Boundary Seeking GAN，它的中文翻译是：基于边界寻找的gan，那么这个边界指的是谁呢？一般而言，判别器的loss稳定在0.5的时候，生
+     成图片的效果是最好的，而这个边界指代的就是0.5。　
 ### 5-BycicleGAN
-     具体的思路
-     有两组图片，记做realA和realB, 首先，我们将realB送入encoder中,得到方差的对数和均值, 然后通过重参数的技巧得到一个向量，将这个向量和图片realA合并，送入生成模型(U-net)中生成图片，　接着将生成图片送入判别模型中。　另外，还自动生成一个隐藏向量，然后和realA组合送入生成模型，然后将生成的图片送入到判别模型中。　encoder模型的损失包括: realB和fakeB的损失， KL损失，　判别模型将fakeB判别为真的损失，　判别模型将随机向量生成的图片判别为真的损。　generation模型的损失包括: 随机向量送入encoder中得到的均值向量和随机向量的mae_loss。　decision模型的损失包括: 将realB判别为真的损失, 将fakeB判别为假的损失，
+     具体的思路:
+        有两组图片，记做realA和realB, 首先，我们将realB送入encoder中,得到方差的对数和均值, 然后通过重参数的技巧得到一个向量，将这个向量和图片
+     realA合并，送入生成模型(U-net)中生成图片，　接着将生成图片送入判别模型中。　另外，还自动生成一个隐藏向量，然后和realA组合送入生成模型，
+     然后将生成的图片送入到判别模型中。　encoder模型的损失包括: realB和fakeB的损失， KL损失，　判别模型将fakeB判别为真的损失，　判别模型将随机
+     向量生成的图片判别为真的损。　generation模型的损失包括: 随机向量送入encoder中得到的均值向量和随机向量的mae_loss。　decision模型的损失
+     包括: 将realB判别为真的损失, 将fakeB判别为假的损失，
      模型结构图
    ![BycicleGAN模型](https://github.com/shawroad/GAN-pytorch/blob/master/assert/bicyclegan_architecture.jpg)
 ### 6-CCGAN
