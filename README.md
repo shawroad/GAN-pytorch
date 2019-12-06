@@ -54,8 +54,9 @@ Implementation of GAN
      
      模型结构图
    ![BycicleGAN模型](https://github.com/shawroad/GAN-pytorch/blob/master/assert/bicyclegan_architecture.jpg)
+   
 ### 6-CCGAN
-  　 具体的思路
+     具体的思路:
         CCGAN的全称是“Semi-Supervised Learning with Context-Conditional Generative Adversarial Networks”，中文翻译是
      “基于上下文条件以及半监督学习的生成对抗网”。这个网络损失函数遵循与基本的GAN，唯一有点区别的是:在这个网络中，输入的图片有两部分，
      第一部分为被mask处理过的图片（比如一个区域设置为0）,第二部分为低分辨图片（就是将图片直接resize为一个小尺度的图片，第二部可选择
