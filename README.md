@@ -95,8 +95,12 @@ Implementation of GAN
 
 ### 12-DCGAN
      具体的思路:
-
-
+        不采用任何池化层（ Pooling Layer ）， 在判别器D 中，用带有步长（ Stride)的卷积来代替池化层。
+        在G 、D 中均使用Batch Normalization帮助模型收敛。
+        在G中，激活函数除了最后一层都使用ReLU 函数，而最后一层使用tanh函数。使用tanh函数的原因在于最后一层要输出图像，而图像的
+     像素值是有一个取值范围的，如0～255 。ReLU函数的输出可能会很大，而tanh函数的输出是在-1～1之间的，只要将tanh函数的输出加1再
+     乘以127.5可以得到0～255 的像素值。
+        在D 中，激活函数都使用Leaky ReLU作为激活函数。
 ### 13-DiscoGAN
      具体的思路:
 
