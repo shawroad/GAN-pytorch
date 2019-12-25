@@ -91,7 +91,37 @@ Implementation of GAN
         判别模型损失: 将生成图片判断为假，将真实图片判断为真的损失。
 ### 11-CycleGAN
      具体的思路:
+     生成模型的损失:
+            # Identity loss
+            loss_id_A = criterion_identity(G_BA(real_A), real_A)   # L1_loss
+            loss_id_B = criterion_identity(G_AB(real_B), real_B)   # L1_loss
+            loss_identity = (loss_id_A + loss_id_B) / 2
 
+            # GAN loss
+            fake_B = G_AB(real_A)   # 通过realA生成fakeB
+            loss_GAN_AB = criterion_GAN(D_B(fake_B), valid)
+            fake_A = G_BA(real_B)   # 通过realB生成fakeA
+            loss_GAN_BA = criterion_GAN(D_A(fake_A), valid)
+            loss_GAN = (loss_GAN_AB + loss_GAN_BA) / 2
+
+            # Cycle loss
+            recov_A = G_BA(fake_B)    # 接着有通过fakeB去重构A
+            loss_cycle_A = criterion_cycle(recov_A, real_A)  # 算重构A和真实A的损失
+            recov_B = G_AB(fake_A)
+            loss_cycle_B = criterion_cycle(recov_B, real_B)
+            loss_cycle = (loss_cycle_A + loss_cycle_B) / 2
+
+            # Total loss
+            loss_G = loss_GAN + opt.lambda_cyc * loss_cycle + opt.lambda_id * loss_identity
+       判别模型的损失:
+            # Real loss
+            loss_real = criterion_GAN(D_A(real_A), valid)
+            # Fake loss (on batch of previously generated samples)
+            fake_A_ = fake_A_buffer.push_and_pop(fake_A)
+            loss_fake = criterion_GAN(D_A(fake_A_.detach()), fake)
+            # Total loss
+            loss_D_A = (loss_real + loss_fake) / 2   # 判别模型A的损失
+   [!Cycle模型结构](https://github.com/shawroad/GAN-pytorch/blob/master/assert/CycleGAN.png)
 
 ### 12-DCGAN
      具体的思路:
