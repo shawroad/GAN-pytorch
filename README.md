@@ -121,7 +121,7 @@ Implementation of GAN
             loss_fake = criterion_GAN(D_A(fake_A_.detach()), fake)
             # Total loss
             loss_D_A = (loss_real + loss_fake) / 2   # 判别模型A的损失
-   [!Cycle模型结构](https://github.com/shawroad/GAN-pytorch/blob/master/assert/CycleGAN.png)
+   ![Cycle模型结构](https://github.com/shawroad/GAN-pytorch/blob/master/assert/CycleGAN.png)
 
 ### 12-DCGAN
      具体的思路:
