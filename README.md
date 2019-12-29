@@ -181,11 +181,14 @@ Implementation of GAN
      　　判别模型损失: 两部分损失，一: 将fakeB和realA进行拼接放入判别模型　判别为假的损失　将realB和realA放
        进判别模型，判别为真的损失。
      　　生成模型损失: 两部分损失，一: 生成的fakeB和realB计算一个重构误差损失.　二: 将fakeB和realA进行拼接　
-### 23-
+### 23-pixlda
      具体的思路
 
-### 24- 
+### 24-RelativisticGAN
      具体的思路
 
-### 25-
+### 25-SGAN
      具体的思路
+### 26-SoftmaxGAN
+     具体的思路
+     
